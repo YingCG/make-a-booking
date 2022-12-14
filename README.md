@@ -1,4 +1,4 @@
-# An react application to make an appointment.
+# A react application to make an appointment.
 
 Project goal to tidy up some react learning :
 1. Toggle funtion to show and hide
