@@ -2,6 +2,7 @@ import { MdDateRange } from "react-icons/md";
 import ProjectList from "./components/ProjectList";
 import "./App.css";
 import { HashRouter, Routes, Route, Link } from "react-router-dom";
+import Movies from "./components/Movies";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         </Link>
         <Routes>
           <Route exact path="/" element={<ProjectList />} />
+          <Route exact path="/movies" element={<Movies />} />
         </Routes>
       </HashRouter>
     </div>

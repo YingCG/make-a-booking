@@ -17,7 +17,7 @@ export default function BookingItem({ booking, remove }) {
       )}
       <div className="flex justify-between">
         <p className="text-orange-700 flex">
-          <MdEditCalendar className="self-center text-orange-700" />{" "}
+          <MdEditCalendar className="self-center text-orange-700" />
           {booking.date}
         </p>
         <p className="flex" onClick={() => remove(booking.id)}>

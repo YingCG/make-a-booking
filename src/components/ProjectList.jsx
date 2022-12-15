@@ -8,6 +8,7 @@ import Pagination from "./Pagination";
 export default function ProjectList() {
   const [data, setData] = useState([]);
   const [filteredData, setFilteredData] = useState([]);
+  const [orderby, setOrderby] = useState('A-Z')
 
   // const fetchData = useCallback(() => {
   //     fetch('./data/blog.json')
@@ -23,32 +24,44 @@ export default function ProjectList() {
   // },[fetchData])
 
   const cancelBooking = (bookingID) => {
-    const updateInfo = data.filter((booking) => booking.id !== bookingID);
+    const updateInfo = data.filter((event) => event.id !== bookingID);
     setFilteredData(updateInfo);
     setData(updateInfo);
   };
 
   const searchProject = (text) => {
     setFilteredData(
-      data.filter((booking) => booking.title.toLowerCase().includes(text))
+      data.filter((event) => event.title.toLowerCase().includes(text))
     );
   };
 
+  const sorting = (ascending) => {
+    filteredData.sort((a, b) => a.title.localeCompare(b.title));
+    
+    if (!ascending) {
+      filteredData.reverse();
+    }
+
+    setFilteredData([...filteredData])
+  }
+
   const displayArtProject = () => {
-    const artInfo = data.filter((info) => info.categories === "art");
-    setFilteredData(artInfo);
-    setData(artInfo);
-  };
-  const displayTechProject = () => {
-    const techInfo = data.filter((info) => info.categories === "tech");
-    setFilteredData(techInfo);
-    setData(techInfo);
-  };
-  const displayOtherProject = () => {
-    const otherInfo = data.filter((info) => info.categories === "other");
-    setFilteredData(otherInfo);
-    setData(otherInfo);
-  };
+    const choosen = data.filter((event) => event.categories === "art");
+    setFilteredData(choosen);
+    setData(choosen)
+  }
+  
+  // const displayTechProject = () => {
+  // 
+  // };
+  // const displayOtherProject = () => {
+  // };
+
+  const addNewBooking = (newBooking) => {
+    setData([...data, newBooking])
+    setFilteredData([...data, newBooking])
+  }
+
   useEffect(() => {
     fetch("./data/blog.json")
       .then((response) => response.json())
@@ -61,24 +74,20 @@ export default function ProjectList() {
   return (
     <>
       <div className="flex content-center mt-10 justify-between py-6 m-4">
-        <h1 className="text-3xl justify-center">Current projects</h1>
-        <Search search={searchProject} />
+      <Pagination showArt={displayArtProject}/>
+        <Search search={searchProject} orderby={sorting}/>
       </div>
-      <Pagination />
       <div className="mx-6 mt-2 grid grid-cols-4 gap-4">
         {filteredData.map((project) => (
           <BookingItem
             key={project.id}
             booking={project}
             remove={cancelBooking}
-            art={displayArtProject}
-            tech={displayTechProject}
-            other={displayOtherProject}
           />
         ))}
       </div>
 
-      <AddAppointment />
+      <AddAppointment bookings={filteredData} setBooking={addNewBooking} />
     </>
   );
 }
