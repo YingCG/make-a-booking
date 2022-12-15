@@ -1,21 +1,21 @@
-import {MdDateRange} from 'react-icons/md';
-
-import ProjectList from './components/ProjectList';
-import './App.css'
-import {HashRouter, Routes, Route, Link} from 'react-router-dom'
+import { MdDateRange } from "react-icons/md";
+import ProjectList from "./components/ProjectList";
+import "./App.css";
+import { HashRouter, Routes, Route, Link } from "react-router-dom";
 
 function App() {
   return (
-    <div className="App container mx-5 mt-5 font-thin">
-     <HashRouter>
-     <Link to='/'><h1 className='text-5xl'><MdDateRange className='inline-block align-top'/> Make a booking... </h1></Link>
-      <Routes>
-        <Route path='/' element=<ProjectList/>/>
-        {/* <Route path='/booking' element= <AddAppointment/>/> */}
-      </Routes>
-     </HashRouter>
-     
-    
+    <div className="mx-5 mt-5 font-thin">
+      <HashRouter>
+        <Link to="/">
+          <h1 className="text-5xl">
+            <MdDateRange className="inline-block align-top" /> Make a booking...
+          </h1>
+        </Link>
+        <Routes>
+          <Route exact path="/" element={<ProjectList />} />
+        </Routes>
+      </HashRouter>
     </div>
   );
 }
