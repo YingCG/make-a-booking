@@ -9,16 +9,6 @@ export default function ProjectList() {
   const [data, setData] = useState([]);
   const [filteredData, setFilteredData] = useState([]);
 
-  const displayArtProject = () => {
-    setFilteredData((info) => info.filter(info.categories === "art"));
-  };
-  const displayTechProject = () => {
-    setFilteredData((info) => info.filter(info.categories === "tech"));
-  };
-  const displayOtherProject = () => {
-    setFilteredData((info) => info.filter(info.categories === "other"));
-  };
-
   // const fetchData = useCallback(() => {
   //     fetch('./data/blog.json')
   //     .then (response => response.json())
@@ -44,6 +34,21 @@ export default function ProjectList() {
     );
   };
 
+  const displayArtProject = () => {
+    const artInfo = data.filter((info) => info.categories === "art");
+    setFilteredData(artInfo);
+    setData(artInfo);
+  };
+  const displayTechProject = () => {
+    const techInfo = data.filter((info) => info.categories === "tech");
+    setFilteredData(techInfo);
+    setData(techInfo);
+  };
+  const displayOtherProject = () => {
+    const otherInfo = data.filter((info) => info.categories === "other");
+    setFilteredData(otherInfo);
+    setData(otherInfo);
+  };
   useEffect(() => {
     fetch("./data/blog.json")
       .then((response) => response.json())
@@ -59,13 +64,16 @@ export default function ProjectList() {
         <h1 className="text-3xl justify-center">Current projects</h1>
         <Search search={searchProject} />
       </div>
-
+      <Pagination />
       <div className="mx-6 mt-2 grid grid-cols-4 gap-4">
         {filteredData.map((project) => (
           <BookingItem
             key={project.id}
             booking={project}
             remove={cancelBooking}
+            art={displayArtProject}
+            tech={displayTechProject}
+            other={displayOtherProject}
           />
         ))}
       </div>
