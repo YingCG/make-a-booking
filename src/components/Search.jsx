@@ -10,11 +10,15 @@ export default function Search(props) {
     setToggle(!toggle);
     setDropdownContent(
       <>
-        <div className="text-right">Project</div>
+        {/* <div className="text-right">Project</div>
         <div className="text-right">Categories</div>
-        <div className="text-right">Date</div>
-        <div className="text-right"  onClick={() => props.orderby(true)}>A-Z</div>
-        <div className="text-right"  onClick={() => props.orderby(false)}>Z-A</div>
+        <div className="text-right">Date</div> */}
+        <div className="text-right" onClick={() => props.orderby(true)}>
+          A-Z
+        </div>
+        <div className="text-right" onClick={() => props.orderby(false)}>
+          Z-A
+        </div>
       </>
     );
   };

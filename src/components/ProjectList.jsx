@@ -8,7 +8,6 @@ import Pagination from "./Pagination";
 export default function ProjectList() {
   const [data, setData] = useState([]);
   const [filteredData, setFilteredData] = useState([]);
-  const [orderby, setOrderby] = useState('A-Z')
 
   // const fetchData = useCallback(() => {
   //     fetch('./data/blog.json')
@@ -37,30 +36,32 @@ export default function ProjectList() {
 
   const sorting = (ascending) => {
     filteredData.sort((a, b) => a.title.localeCompare(b.title));
-    
+
     if (!ascending) {
       filteredData.reverse();
     }
 
-    setFilteredData([...filteredData])
-  }
+    setFilteredData([...filteredData]);
+  };
 
   const displayArtProject = () => {
     const choosen = data.filter((event) => event.categories === "art");
     setFilteredData(choosen);
-    setData(choosen)
-  }
-  
-  // const displayTechProject = () => {
-  // 
-  // };
-  // const displayOtherProject = () => {
-  // };
+  };
+
+  const displayTechProject = () => {
+    const choosen = data.filter((event) => event.categories === "tech");
+    setFilteredData(choosen);
+  };
+  const displayOtherProject = () => {
+    const choosen = data.filter((event) => event.categories === "other");
+    setFilteredData(choosen);
+  };
 
   const addNewBooking = (newBooking) => {
-    setData([...data, newBooking])
-    setFilteredData([...data, newBooking])
-  }
+    setData([...data, newBooking]);
+    setFilteredData([...data, newBooking]);
+  };
 
   useEffect(() => {
     fetch("./data/blog.json")
@@ -74,8 +75,12 @@ export default function ProjectList() {
   return (
     <>
       <div className="flex content-center mt-10 justify-between py-6 m-4">
-      <Pagination showArt={displayArtProject}/>
-        <Search search={searchProject} orderby={sorting}/>
+        <Pagination
+          showArt={displayArtProject}
+          showTech={displayTechProject}
+          showOther={displayOtherProject}
+        />
+        <Search search={searchProject} orderby={sorting} />
       </div>
       <div className="mx-6 mt-2 grid grid-cols-4 gap-4">
         {filteredData.map((project) => (
