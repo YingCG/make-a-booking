@@ -1,8 +1,8 @@
 {
-  "name": "booking",
+  "name": "make-a-booking",
   "version": "0.1.0",
   "private": true,
-  "homepage": "/YingCG.github.io/make-a-booking",
+  "homepage": "make-a-booking",
   "dependencies": {
     "@craco/craco": "^7.0.0",
     "@tailwindcss/forms": "^0.5.3",
@@ -20,7 +20,7 @@
   },
   "scripts": {
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
+    "deploy": "gh-pages -b main -d build",
     "start": "craco start",
     "build": "craco build",
     "test": "craco test",
