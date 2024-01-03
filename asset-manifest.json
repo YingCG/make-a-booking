@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/YingCG.github.io/make-a-booking/static/css/main.67e078c6.css",
+    "main.js": "/YingCG.github.io/make-a-booking/static/js/main.cb36975c.js",
+    "static/js/787.22cf53f4.chunk.js": "/YingCG.github.io/make-a-booking/static/js/787.22cf53f4.chunk.js",
+    "index.html": "/YingCG.github.io/make-a-booking/index.html",
+    "main.67e078c6.css.map": "/YingCG.github.io/make-a-booking/static/css/main.67e078c6.css.map",
+    "main.cb36975c.js.map": "/YingCG.github.io/make-a-booking/static/js/main.cb36975c.js.map",
+    "787.22cf53f4.chunk.js.map": "/YingCG.github.io/make-a-booking/static/js/787.22cf53f4.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.67e078c6.css",
+    "static/js/main.cb36975c.js"
+  ]
+}
