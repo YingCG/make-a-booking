@@ -3,24 +3,24 @@ import DateTimePicker from "react-datetime-picker";
 import { BiCalendarPlus } from "react-icons/bi";
 
 export default function AddAppointment({setBooking, bookings}) {
-  const [value, onChange] = useState(new Date());
+  const [time, handleTime] = useState(new Date());
   let [toggleForm, setToggleForm] = useState(false);
   const openForm = () => setToggleForm(!toggleForm);
 
-  const initial = {
-    id: '',
-    firstName: '',
-    lastName: '',
-    title: '',
-    content: '',
-    date: '',
-    categories: ''
-  }
-  const [formInfo, setFomrInfo] = useState(initial)
+  // const initial = {
+  //   id: '',
+  //   firstName: '',
+  //   lastName: '',
+  //   title: '',
+  //   content: '',
+  //   date: '',
+  //   categories: ''
+  // }
+  const [formInfo, setFormInfo] = useState({})
 
   const handleChange = (e) => {
     const {name, value} = e.target
-    setFomrInfo({
+    setFormInfo({
         ...formInfo,
         [name] : value
     })
@@ -30,15 +30,14 @@ const handleSubmit = (e) => {
   e.preventDefault();
 
   const newAppointment = {
-    id: bookings.length + 1,
-    name: e.target.firstName.value + " " + e.target.lastName.value ,
-    title: e.target.title.value,
-    content: e.target.content.value,
-    date: value.toString(),
-    categories: e.target.categories.value
+    // id: bookings.length + 1,
+    // name: e.target.firstName.value + " " + e.target.lastName.value ,
+    // title: e.target.title.value,
+    // content: e.target.content.value,
+    // date: time.toString(),
+    // categories: e.target.categories.value
+    ...formInfo, date: time.toString(),
   }
-    console.log(formInfo)
-    console.log(newAppointment)
     setBooking(newAppointment)
 }
   return (
@@ -79,8 +78,8 @@ const handleSubmit = (e) => {
                 </select>
             <label>Book An Appointment</label>
             <DateTimePicker
-              onChange={onChange}
-              value={value}
+              onChange={handleTime}
+              value={time}
               type="datetime-local"
               className="block bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg p-1 w-full"
               style={{ border: "none !important", outline: "none" }}
